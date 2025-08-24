@@ -18,7 +18,8 @@ export default function MyRentals() {
   const { items: rentals } = useSelector((s: RootState) => s.rentals);
   const { items: books } = useSelector((s: RootState) => s.books);
   const { user } = useSelector((s: RootState) => s.auth);
-  const [tick, setTick] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [, setTick] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => setTick((t) => t + 1), 1000);
