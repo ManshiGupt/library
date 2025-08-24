@@ -1,69 +1,42 @@
-# React + TypeScript + Vite
+This project is still under development. The following features are partially implemented or pending:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+User Statistics in Redux
 
-Currently, two official plugins are available:
+updateStats reducer exists but the User type does not yet include stats. Needs schema update.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Stats (totalRented, activeRentals) are not persisted in localStorage.
 
-## Expanding the ESLint configuration
+Penalties Tracking
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+updatePenalties action has been added, but the User interface does not yet include a penalties field.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+UI for displaying penalties is not fully implemented.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Profile Picture Upload
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+File upload and preview implemented locally, but image persistence (backend or storage service) is not connected.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Currently resets on page reload.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Rental History
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Placeholder logic exists, but actual integration with a backend API or persistent store is not completed.
+
+Authentication Enhancements
+
+Currently uses DummyJSON API
+ for login simulation.
+
+No refresh token / JWT validation.
+
+Logout only clears localStorage without API call.
+
+Error Handling
+
+Limited error handling for failed API calls.
+
+No retry or fallback mechanism in place.
+
+Responsive Design
+
+Navigation bar is responsive, but some profile and rental pages require additional mobile-friendly styling.

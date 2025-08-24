@@ -6,6 +6,9 @@ export default function Profile() {
   const { user } = useSelector((s: RootState) => s.auth);
   const penalties = useSelector((s: RootState) => s.penalty.userPenalties[user?.id || 0] || 0);
   const dispatch = useDispatch<AppDispatch>();
+   const rentals = useSelector((state: RootState) => state.rentals.items);
+  const books = useSelector((state: RootState) => state.books.items);
+
 
   return (
     <div className="p-6">
@@ -21,5 +24,6 @@ export default function Profile() {
         </button>
       )}
     </div>
+    
   );
 }

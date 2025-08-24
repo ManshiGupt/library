@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBooks, toggleWishlist, setSearchQuery, markRented } from "../store/booksSlice";
 import type { RootState, AppDispatch } from "../store";
+import { rentBook } from "../store/rentalsSlice";
 
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
@@ -55,7 +56,10 @@ export default function Home() {
               </button>
               {book.available ? (
                 <button
-                  onClick={() => dispatch(markRented({ bookId: book.id, userId: user!.id }))}
+                  onClick={() =>{
+                      if (!user) return;
+                     dispatch(rentBook({ bookId: book.id, userId: user.id }))
+                     dispatch(markRented({ bookId: book.id, userId: user!.id }))}}
                   className="px-2 py-1 bg-orange-600 text-white rounded hover:bg-orange-700"
                 >
                   Rent

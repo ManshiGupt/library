@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, type PayloadAction } from "@reduxjs/toolkit";
 
 export interface User {
   id: number;
@@ -6,13 +6,57 @@ export interface User {
   firstName: string;
   lastName: string;
   image: string;
+
 }
 
+// interface AuthState {
+//   user: User | null;
+//   isAuthenticated: boolean;
+//   loading: boolean;
+//   error: string | null;
+//      stats: {
+//     totalRented: number;
+//     activeRentals: number;
+//   };
+// }
+
+// const initialState: AuthState = {
+//   user: JSON.parse(localStorage.getItem("user") || "null"),
+//   isAuthenticated: !!localStorage.getItem("user"),
+//   loading: false,
+//   error: null,
+//     stats: { totalRented: 0, activeRentals: 0 },
+// };
+// interface AuthState {
+//   user: User | null;
+//   isAuthenticated: boolean;
+//   loading: boolean;
+//   error: string | null;
+//   stats: {
+//     totalRented: number;
+//     activeRentals: number;
+//   };
+//   penalties: number;
+// }
+
+// const initialState: AuthState = {
+//   user: JSON.parse(localStorage.getItem("user") || "null"),
+//   isAuthenticated: !!localStorage.getItem("user"),
+//   loading: false,
+//   error: null,
+//   stats: { totalRented: 0, activeRentals: 0 },
+//   penalties: 0,
+// };
 interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
   loading: boolean;
   error: string | null;
+  stats: {
+    totalRented: number;
+    activeRentals: number;
+  };
+  penalties: number;
 }
 
 const initialState: AuthState = {
@@ -20,7 +64,10 @@ const initialState: AuthState = {
   isAuthenticated: !!localStorage.getItem("user"),
   loading: false,
   error: null,
+  stats: { totalRented: 0, activeRentals: 0 },
+  penalties: 0,
 };
+
 
 // Async thunk to simulate login with DummyJSON API
 export const loginUser = createAsyncThunk(
@@ -49,7 +96,12 @@ const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
       localStorage.removeItem("user");
-    },
+    },updateStats: (state, action: PayloadAction<{ totalRented: number; activeRentals: number }>) => {
+  state.stats = action.payload;
+},
+updatePenalties: (state, action: PayloadAction<number>) => {
+  state.penalties = action.payload;
+},
   },
   extraReducers: (builder) => {
     builder
@@ -70,5 +122,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout , updateStats, updatePenalties} = authSlice.actions;
 export default authSlice.reducer;

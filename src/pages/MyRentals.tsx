@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "../store";
 import { returnBook } from "../store/rentalsSlice";
-import { markReturned } from "../store/booksSlice";
+import { fetchBooks, markReturned } from "../store/booksSlice";
 import { useEffect, useState } from "react";
 
 function countdown(due: number) {
@@ -26,6 +26,9 @@ export default function MyRentals() {
   }, []);
 
   const myRentals = rentals.filter((r) => r.userId === user!.id && !r.returned);
+  useEffect(() => {
+  if (books.length === 0) dispatch(fetchBooks());
+}, [books.length, dispatch]);
 
   return (
     <div className="p-6">
