@@ -25,7 +25,7 @@ const rentalsSlice = createSlice({
         bookId: action.payload.bookId,
         userId: action.payload.userId,
         startTime: now,
-        dueTime: now + 24 * 60 * 60 * 1000, // 24 hrs
+        dueTime: now +  1000, // 24 hrs
         returned: false,
       });
     },
