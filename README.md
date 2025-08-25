@@ -4,11 +4,8 @@ User Statistics in Redux
 
 updateStats reducer exists but the User type does not yet include stats. Needs schema update.
 
-Stats (totalRented, activeRentals) are not persisted in localStorage.
 
-Penalties Tracking
 
-updatePenalties action has been added, but the User interface does not yet include a penalties field.
 
 UI for displaying penalties is not fully implemented.
 
@@ -37,6 +34,6 @@ Limited error handling for failed API calls.
 
 No retry or fallback mechanism in place.
 
-Responsive Design
+
 
 Navigation bar is responsive, but some profile and rental pages require additional mobile-friendly styling.
