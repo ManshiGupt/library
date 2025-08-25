@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import type { RootState, AppDispatch } from "../store";
 import { addPenalty, clearPenalty } from "../store/penaltySlice";
 
